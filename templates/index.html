@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    
+    <!-- 🪻 Indie Flower font link -->
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    
+    <style>
+    body {
+        background: url("/static/BG.jpg") no-repeat center center fixed;
+        background-size: cover;
+        color: white;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    a:hover {
+        color: #00ffc8;
+        text-shadow: 0 0 10px #00ffc8, 0 0 20px #00ffc8;
+        text-decoration: underline;
+    }
+
+    button {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 6px;
+        background-color: #333;
+        color: white;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background-color: #00ffc8;
+        color: black;
+    }
+
+    /* 🌸 Make h1 use Indie Flower */
+    h1 {
+        font-family: 'Indie Flower', cursive;
+        font-size: 38px;
+    }
+
+    /* 💖 Styling for the cute quote */
+    .quote {
+        font-family: 'Indie Flower', cursive;
+        font-style: italic;
+        font-size: 22px;
+        margin-top: 30px;
+        margin-bottom: 10px;
+    }
+    </style>
+</head>
+<body>
+    <h1>🎧 Iris’s Music Library 🎵</h1>
+
+    <form method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="audio/*,video/*" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <div class="file-list">
+        <h3>🎵 MUSIC:</h3>
+        <ul>
+            {% for file in files %}
+            <li>
+                <a href="/download/{{ file }}" target="_blank">{{ file }}</a>
+                <form method="POST" action="/delete/{{ file }}" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <br>
+
+    <!-- ✨ CUTE QUOTE -->
+    <p class="quote">Life’s a song; sing it! &lt;3</p>
+
+    <!-- 🔒 Logout button -->
+    <a href="/logout">🔒 Logout</a>
+</body>
+</html>
